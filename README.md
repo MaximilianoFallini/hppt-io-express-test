@@ -66,7 +66,7 @@ brew services start mongodb-community
 ## 🏃 Ejecutar el proyecto
 
 ```bash
-npm run dev
+npm start
 ```
 
 El servidor estará disponible en `http://localhost:3000`
