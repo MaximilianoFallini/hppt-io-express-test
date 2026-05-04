@@ -9,6 +9,14 @@ function Chat() {
   const [mensajes, setMensajes] = useState([])
 
   useEffect(() => {
+    // Cargar mensajes guardados desde la BD
+    fetch('/api/mensajes')
+      .then((res) => res.json())
+      .then((mensajesGuardados) => {
+        setMensajes(mensajesGuardados);
+      })
+      .catch((error) => console.error("Error al cargar mensajes:", error));
+
     // Cuando llega un mensaje del servidor, lo agregamos al chat.
     socket.on('mensaje_chat', (mensaje) => {
       setMensajes((mensajesActuales) => [...mensajesActuales, mensaje])
@@ -63,7 +71,7 @@ function Chat() {
 
           return (
             <div
-              key={mensaje.id}
+              key={mensaje.id || mensaje._id}
               className={`max-w-[75%] rounded-lg px-4 py-3 text-sm shadow-sm ${
                 esMiMensaje
                   ? 'ml-auto rounded-tr-none bg-emerald-100 text-slate-800'

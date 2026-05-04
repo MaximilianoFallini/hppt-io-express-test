@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const esquemaDeProducto = new mongoose.Schema({
+    id: Number,
     autorId: String,
     nombre: String,
     texto: String,
